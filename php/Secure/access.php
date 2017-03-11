@@ -121,7 +121,7 @@ class access{
 
     // Select all content from the books table that holds all books.
     public function getAllBooks(){
-      
+
       $sql = "SELECT * FROM Rent_Me_Books";
       // Create the query to send to the database gathering all data from it.
       $result = $this->connection->query($sql);
@@ -142,21 +142,19 @@ class access{
     public function getGenere($genere){
         $returnArray = null;
         $sql = "SELECT * FROM Rent_Me_Books WHERE tag='".$genere."'";
-        // Assign result from $sql into $result var
+        // Create the query to send to the database gathering all data from it.
         $result = $this->connection->query($sql);
 
-        // If at least one result is returned from the database
-        if($result != null && mysqli_num_rows($result) >= 1)
-        {
-            // Store all selected data in result to the $row var
-            $row = $result->fetch_array(MYSQLI_ASSOC);
-
-            if(!empty($row))
-            {
-                $returnArray = $row;
-            }
+        // Declare an array that will hold all the contacts (from each row).
+        $booksData = array();
+        $i = 0;
+        while($row = mysqli_fetch_assoc($result)) {
+          $booksData[$i] = $row;
+          $i++;
         }
-        return $returnArray;
+
+        // Return the array that contains all the books with its respected data.
+        return $booksData;
     }
 }
 ?>

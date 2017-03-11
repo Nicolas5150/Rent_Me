@@ -1,5 +1,5 @@
 <?php
-$genere = null; //$_POST["genere"];
+$genere = htmlspecialchars($_POST["genere"]);
 
 // 2 Build Connection
 // Build connection in secure way
@@ -16,7 +16,7 @@ $access = new access($host, $user, $pass, $name);
 $access->connect();
 
 // First pass into the site in which all books are loaded for the user to see.
-if ($genere == null) {
+if ($genere == "none") {
   $booksData = $access->getAllBooks();
 
   // Return (by echo) all books and its respected data back to the ajax call.
