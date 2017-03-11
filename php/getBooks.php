@@ -1,5 +1,6 @@
 <?php
 // see if either value was passed in via ajax call.
+$genere = null;
 if (!empty($_POST["genere"])) {
   $genere = htmlspecialchars($_POST["genere"]);
 }
@@ -7,6 +8,11 @@ if (!empty($_POST["genere"])) {
 $title = null;
 if (!empty($_POST["title"])) {
   $title = $_POST["title"];
+}
+
+$count = null;
+if (!empty($_POST["count"])) {
+  $count = $_POST["count"];
 }
 
 // 2 Build Connection
@@ -22,6 +28,18 @@ $name = trim($file["dbName"]);
 require("Secure/access.php");
 $access = new access($host, $user, $pass, $name);
 $access->connect();
+
+// Decrement the counter for the current book at hand.
+if ($title != null && $count != null) {
+  $booksData = $access->decrementBook($title);
+
+  // Return (by echo) all books and its respected data back to the ajax call.
+  echo json_encode($booksData);
+
+  $access->dissconnect();
+
+  return;
+}
 
 // Only if the user is pulling up the modal with the specific book
 if ($title != null) {

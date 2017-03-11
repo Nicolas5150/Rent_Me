@@ -121,7 +121,6 @@ class access{
 
     // Select all content from the books table that holds all books.
     public function getAllBooks(){
-
       $sql = "SELECT * FROM Rent_Me_Books";
       // Create the query to send to the database gathering all data from it.
       $result = $this->connection->query($sql);
@@ -140,40 +139,66 @@ class access{
 
     // Select all from the users table that is the same genere as requested.
     public function getGenere($genere){
-        $returnArray = null;
-        $sql = "SELECT * FROM Rent_Me_Books WHERE tag='".$genere."'";
-        // Create the query to send to the database gathering all data from it.
-        $result = $this->connection->query($sql);
+      $sql = "SELECT * FROM Rent_Me_Books WHERE tag='".$genere."'";
+      // Create the query to send to the database gathering all data from it.
+      $result = $this->connection->query($sql);
 
-        // Declare an array that will hold all the contacts (from each row).
-        $booksData = array();
-        $i = 0;
-        while($row = mysqli_fetch_assoc($result)) {
-          $booksData[$i] = $row;
-          $i++;
-        }
+      // Declare an array that will hold all the contacts (from each row).
+      $booksData = array();
+      $i = 0;
+      while($row = mysqli_fetch_assoc($result)) {
+        $booksData[$i] = $row;
+        $i++;
+      }
 
-        // Return the array that contains all the books with its respected data.
-        return $booksData;
+      // Return the array that contains all the books with its respected data.
+      return $booksData;
     }
 
     // Select all from the users table that is the same genere as requested.
     public function selectBook($title){
-        $returnArray = null;
-        $sql = "SELECT * FROM Rent_Me_Books WHERE title='".$title."'";
-        // Create the query to send to the database gathering all data from it.
-        $result = $this->connection->query($sql);
+      $sql = "SELECT * FROM Rent_Me_Books WHERE title='".$title."'";
+      // Create the query to send to the database gathering all data from it.
+      $result = $this->connection->query($sql);
 
-        // Declare an array that will hold all the contacts (from each row).
-        $booksData = array();
-        $i = 0;
-        while($row = mysqli_fetch_assoc($result)) {
-          $booksData[$i] = $row;
-          $i++;
-        }
+      // Declare an array that will hold all the contacts (from each row).
+      $booksData = array();
+      $i = 0;
+      while($row = mysqli_fetch_assoc($result)) {
+        $booksData[$i] = $row;
+        $i++;
+      }
 
-        // Return the array that contains all the books with its respected data.
-        return $booksData;
+      // Return the array that contains all the books with its respected data.
+      return $booksData;
+    }
+
+    // Decrement the book count by 1 based on the title provided.
+    public function decrementBook($title){
+      // http://www.phpeasystep.com/mysql/10.html
+      $sql = "UPDATE Rent_Me_Books SET count = count - 1 WHERE title='$title'";
+
+      // Store query result in statement var
+      $statement = $this->$connection->prepare($sql);
+
+      //Check for statment
+      if(!$statement){
+          throw new Exception($statement->error);
+      }
+    }
+
+    // Increment the book count by 1 based on the title provided.
+    public function incrementBook($title){
+      // http://www.phpeasystep.com/mysql/10.html
+      $sql = "UPDATE Rent_Me_Books SET count = count + 1 WHERE title='$title'";
+
+      // Store query result in statement var
+      $statement = $this->$connection->prepare($sql);
+
+      //Check for statment
+      if(!$statement){
+          throw new Exception($statement->error);
+      }
     }
 }
 ?>

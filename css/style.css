@@ -301,3 +301,7 @@ dropdown-content li > a, .dropdown-content li > span {
 .books {
   z-index: 5;
 }
+
+img .book_image{
+  width: 50px;
+}
