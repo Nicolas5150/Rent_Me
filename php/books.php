@@ -66,10 +66,33 @@
       <div id="all_books">
 
       </div>
-
     </div>
 
+    <a href="#" class="books" id="bookOne">This is a link</a>
+    <div class="card col s12 m6 l4">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="../img/book_cover.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+        <a href="#" class="books" id="bookOne">This is a link</a>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Description<i class="material-icons right">close</i></span>
+        <p>+mydata[i].description</p>
+      </div>
+    </div>
   </div>
+
+  <!-- The Modal Pop-Up - More about book -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="book_details">
+
+    </div>
+  </div>
+</div>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -77,7 +100,6 @@
   <script src="../js/init.js"></script>
   <script src="../js/account.js"></script>
   <script src="../js/books.js"></script>
-
 
   </body>
 </html>

@@ -156,5 +156,24 @@ class access{
         // Return the array that contains all the books with its respected data.
         return $booksData;
     }
+
+    // Select all from the users table that is the same genere as requested.
+    public function selectBook($title){
+        $returnArray = null;
+        $sql = "SELECT * FROM Rent_Me_Books WHERE title='".$title."'";
+        // Create the query to send to the database gathering all data from it.
+        $result = $this->connection->query($sql);
+
+        // Declare an array that will hold all the contacts (from each row).
+        $booksData = array();
+        $i = 0;
+        while($row = mysqli_fetch_assoc($result)) {
+          $booksData[$i] = $row;
+          $i++;
+        }
+
+        // Return the array that contains all the books with its respected data.
+        return $booksData;
+    }
 }
 ?>

@@ -297,3 +297,7 @@ dropdown-content li > a, .dropdown-content li > span {
     margin-left: 0px;
   }
 }
+
+.books {
+  z-index: 5;
+}
