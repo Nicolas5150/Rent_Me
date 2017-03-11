@@ -16,30 +16,30 @@
 <body>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="../index.php" class="brand-logo">Rent Me</a>
+      <a id="logo-container" href="../index.html" class="brand-logo">Rent Me</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <li><a href="html/books.php">Books</a></li>
+        <li><a href="html/contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails']))
             // This includes the logout and cart nav sections and its restylings.
-            echo "<li><a href=\"php/login.php\">logout</a></li>";
+            echo "<li><a href=\"../php/login.php\">logout</a></li>";
           else
-            echo "<li><a href=\"login_signup.php\">Login / Signup</a></li>";
+            echo "<li><a href=\"login.php\">Login / Signup</a></li>";
         ?>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <li><a href="html/books.php">Books</a></li>
+        <li><a href="html/contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails']))
             // This includes the logout and cart nav sections and its restylings.
-            echo "<li><a href=\"php/login.php\">logout</a></li>";
+            echo "<li><a href=\"../php/login.php\">logout</a></li>";
           else
-            echo "<li><a href=\"login_signup.php\">Login / Signup</a></li>";
+            echo "<li><a href=\"login.php\">Login / Signup</a></li>";
         ?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

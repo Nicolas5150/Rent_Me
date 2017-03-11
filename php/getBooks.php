@@ -30,11 +30,17 @@ $access = new access($host, $user, $pass, $name);
 $access->connect();
 
 // Decrement the counter for the current book at hand.
-if ($title != null && $count != null) {
+if ($title != null && $count == -1) {
   $booksData = $access->decrementBook($title);
 
-  // Return (by echo) all books and its respected data back to the ajax call.
+  $access->dissconnect();
   echo json_encode($booksData);
+  return;
+}
+
+// Increment the counter for the current book at hand.
+if ($title != null && $count == 1) {
+  $booksData = $access->incrementBook($title);
 
   $access->dissconnect();
 

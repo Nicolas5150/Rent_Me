@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Access functions
 // Declare class to access this php file
 class access{
@@ -66,6 +67,7 @@ class access{
           username VARCHAR(60) NOT NULL,
           password VARCHAR(60) NOT NULL,
           bookcount VARCHAR(60) NOT NULL,
+          title VARCHAR(60) NOT NULL,
           address VARCHAR(100) NOT NULL
         )";
 
@@ -173,8 +175,42 @@ class access{
       return $booksData;
     }
 
-    // Select all from the users table that is the same genere as requested.
+    // Subtract 1 from the count of the book passed in.
     public function decrementBook($title){
+      // // http://www.phpeasystep.com/mysql/10.html
+      $sql = "UPDATE Rent_Me_Books SET count = count - 1 WHERE title='$title'";
+
+      // Store query result in statement var
+      $result = $this->connection->query($sql);
+
+      //Check for statment
+      if(!$result){
+          throw new Exception($result->error);
+      }
+
+      // Grab the table of the current session holder.
+      // Then set thier book count to 1.
+      $tableName = "T_".$_SESSION['userDetails'][0];
+      $sql = "UPDATE $tableName SET bookcount = 1";
+      // // Store query result in statement var
+       $result = $this->connection->query($sql);
+      //Check for statment
+       if(!$result){
+           throw new Exception($result->error);
+       }
+
+       // Then set thier book title to match the checked out book.
+       $sql = "UPDATE $tableName SET title='$title'";
+       // Store query result in statement var
+       $result = $this->connection->query($sql);
+       //Check for statment
+       if(!$result){
+          throw new Exception($result->error);
+       }
+    }
+
+    // Add 1 from the count of the book passed in.
+    public function incrementBook($title){
       // // http://www.phpeasystep.com/mysql/10.html
       $sql = "UPDATE Rent_Me_Books SET count = count + 1 WHERE title='$title'";
 
@@ -185,6 +221,27 @@ class access{
       if(!$result){
           throw new Exception($result->error);
       }
+
+      // Grab the table of the current session holder.
+      // Then set thier book count to 1.
+      $tableName = "T_".$_SESSION['userDetails'][0];
+      $sql = "UPDATE $tableName SET bookcount = 0";
+      // // Store query result in statement var
+       $result = $this->connection->query($sql);
+      //Check for statment
+       if(!$result){
+           throw new Exception($result->error);
+       }
+
+       // Then set thier book title to match the checked out book.
+       $title = "N/A";
+       $sql = "UPDATE $tableName SET title='$title'";
+       // Store query result in statement var
+       $result = $this->connection->query($sql);
+       //Check for statment
+       if(!$result){
+          throw new Exception($result->error);
+       }
     }
 }
 ?>
