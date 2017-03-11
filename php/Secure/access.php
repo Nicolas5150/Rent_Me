@@ -173,31 +173,17 @@ class access{
       return $booksData;
     }
 
-    // Decrement the book count by 1 based on the title provided.
+    // Select all from the users table that is the same genere as requested.
     public function decrementBook($title){
-      // http://www.phpeasystep.com/mysql/10.html
-      $sql = "UPDATE Rent_Me_Books SET count = count - 1 WHERE title='$title'";
-
-      // Store query result in statement var
-      $statement = $this->$connection->prepare($sql);
-
-      //Check for statment
-      if(!$statement){
-          throw new Exception($statement->error);
-      }
-    }
-
-    // Increment the book count by 1 based on the title provided.
-    public function incrementBook($title){
-      // http://www.phpeasystep.com/mysql/10.html
+      // // http://www.phpeasystep.com/mysql/10.html
       $sql = "UPDATE Rent_Me_Books SET count = count + 1 WHERE title='$title'";
 
       // Store query result in statement var
-      $statement = $this->$connection->prepare($sql);
+      $result = $this->connection->query($sql);
 
       //Check for statment
-      if(!$statement){
-          throw new Exception($statement->error);
+      if(!$result){
+          throw new Exception($result->error);
       }
     }
 }

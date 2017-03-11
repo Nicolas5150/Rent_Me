@@ -1,6 +1,6 @@
 <?php
 // see if either value was passed in via ajax call.
-$genere = null;
+
 if (!empty($_POST["genere"])) {
   $genere = htmlspecialchars($_POST["genere"]);
 }
@@ -59,6 +59,9 @@ if ($genere == "none") {
 
   // Return (by echo) all books and its respected data back to the ajax call.
   echo json_encode($booksData);
+
+  $access->dissconnect();
+  return;
 }
 
 // Ajax call specified a genere when calling this php (user entered a genere in
@@ -68,8 +71,8 @@ else {
 
   // Return (by echo) all books and its respected data back to the ajax call.
   echo json_encode($booksData);
-}
 
-// 4 Close connection
-$access->dissconnect();
+  $access->dissconnect();
+  return;
+}
 ?>
