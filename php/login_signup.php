@@ -68,7 +68,7 @@
          <div class="input-field col s12">
            <i class="material-icons prefix">account_circle</i>
            <input id="login_email" type="text" class="validate" name="email">
-           <label for="icon_prefix">Email</label>
+           <label for="icon_prefix">Username</label>
          </div>
          <div class="input-field col s12">
            <i class="material-icons prefix">vpn_key</i>
