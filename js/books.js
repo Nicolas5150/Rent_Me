@@ -151,13 +151,14 @@
               count: -1
             },
             success: function (data) {
-
-              // If the user has a book checked out, alert them to return it.
-
-
-              // Else send the user to their profile page once the book is checked out
-              alert("Your book is on its way. Redirecting to your profile page.");
-              window.location = "http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/profile.php";
+              if(data == "true") {
+                // Else send the user to their profile page once the book is checked out
+                alert("Your book is on its way. Redirecting to your profile page.");
+                window.location = "http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/profile.php";
+              }
+              else {
+                alert("You currently have a book, please return before renting more.");
+              }
             }
           })
         });

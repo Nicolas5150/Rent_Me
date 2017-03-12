@@ -47,13 +47,16 @@
     event.preventDefault();
     $("#rented_all").empty();
 
+    var empty = "<div class=\"center\"><b>You currently have no books being rented<b><div>";
+    $('#rented_all').append(empty);
+
     $.ajax({
       type: 'POST',
       url: 'http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/return_books.php',
       data: ({count: 1}),
       success: function (data) {
         var mydata = JSON.parse(data);
-        
+
         // Now present the modal with the data appended from above.
         var modal = document.getElementById('myModal');
         // Get the <span> element that closes the modal

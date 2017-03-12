@@ -32,12 +32,14 @@ $access->connect();
 
 // Decrement the counter for the current book at hand.
 if ($title != null && $count == -1) {
-  if($_SESSION['userDetails'][1] == 0) {
-    $booksData = $access->decrementBook($title);
+  if ($_SESSION['userDetails'][1] == 0) {
+    $access->decrementBook($title);
+    $_SESSION['userDetails'][1] = 1;
+    $booksData = true;
   }
 
   else {
-    $booksData = "Account has rental";
+    $booksData = false;
   }
 
   $access->dissconnect();
