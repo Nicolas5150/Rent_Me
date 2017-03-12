@@ -1,4 +1,11 @@
 (function($){
+  $(document).ajaxStart(function() {
+    $("#loading").show();
+  });
+
+  $(document).ajaxStop(function() {
+    $("#loading").hide();
+  });
 
   allBooks();
   function allBooks() {
@@ -46,7 +53,7 @@
       data: ({count: 1}),
       success: function (data) {
         var mydata = JSON.parse(data);
-        alert("return "+data);
+        
         // Now present the modal with the data appended from above.
         var modal = document.getElementById('myModal');
         // Get the <span> element that closes the modal

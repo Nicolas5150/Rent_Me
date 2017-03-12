@@ -1,5 +1,4 @@
 (function($){
-
   // Remove signup form show login form
   $( "#login-form-btn" ).click(function() {
     // Reveal the hidden signup after button click

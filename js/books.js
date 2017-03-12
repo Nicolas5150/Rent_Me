@@ -1,4 +1,12 @@
 (function($){
+  $(document).ajaxStart(function() {
+    $("#loading").show();
+  });
+
+  $(document).ajaxStop(function() {
+    $("#loading").hide();
+  });
+
   // Trying to grab data from the json
   // https://openenergymonitor.org/forum-archive/node/107.html
   // http://stackoverflow.com/questions/19706046/how-to-read-an-external-local-json-file-in-javascript
@@ -23,7 +31,7 @@
             "</div>"+
             "<div class=\"card-content\">"+
               "<span class=\"card-title activator grey-text text-darken-4\">"+mydata[i].title+"<i class=\"material-icons right\">more_vert</i></span>"+
-              "<a href=\"#\" class=\"books\" id=\""+mydata[i].title+"\">This is a link</a>"+
+              "<a href=\"#\" class=\"books\" id=\""+mydata[i].title+"\">Rent Me</a>"+
             "</div>"+
             "<div class=\"card-reveal\">"+
               "<span class=\"card-title grey-text text-darken-4\">Description<i class=\"material-icons right\">close</i></span>"+
@@ -71,7 +79,7 @@
               "</div>"+
               "<div class=\"card-content\">"+
                 "<span class=\"card-title activator grey-text text-darken-4\">"+mydata[i].title+"<i class=\"material-icons right\">more_vert</i></span>"+
-                "<a href=\"#\" class=\"books\" id=\""+mydata[i].title+"\">This is a link</a>"+
+                "<a href=\"#\" class=\"books\" id=\""+mydata[i].title+"\">Rent Me</a>"+
               "</div>"+
               "<div class=\"card-reveal\">"+
                 "<span class=\"card-title grey-text text-darken-4\">Description<i class=\"material-icons right\">close</i></span>"+
@@ -117,15 +125,16 @@
         // alert(mydata[0].image);
         // Take each book from the json file and create a new version in DOM
         for (var i = 0; i<Object.keys(mydata).length; i++) {
+          var title = mydata[i].title.replace(/-/g, " ");
           var nextBook =
             "<div class=\"book_image\">"+
               "<img class=\"book_image\" src=\""+mydata[i].image+"\" style=\"width: 60%;\">"+
             "</div>"+
-            "<div><b>"+mydata[i].title+"</b></div>"+
+            "<div><b>"+title+"</b></div>"+
             "<br>"+
               "<p>"+mydata[i].description+"</p>"+
               "<span>"+mydata[i].count+" In stock "+"</span>"+
-              "<span><button type=\"button\" id=\""+mydata[i].title+"-btn"+"\">Click Me!</button></span>"+
+              "<span><button type=\"button\" id=\""+mydata[i].title+"-btn"+"\">Confirm Rent</button></span>"+
           "</div>";
 
           $('#book_details').append(nextBook);
@@ -133,7 +142,6 @@
 
         // Add event listner to allow user to rent book.
         $(document).on("click", "#"+mydata[0].title+"-btn", function(){
-          alert(this.id);
           var str = this.id.slice(0, -4);
           $.ajax({
             type: 'POST',

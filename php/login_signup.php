@@ -19,7 +19,6 @@
       <a id="logo-container" href="../index.php" class="brand-logo">Rent Me</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails'])) {
@@ -34,7 +33,6 @@
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails'])) {

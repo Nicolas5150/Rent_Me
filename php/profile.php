@@ -19,7 +19,6 @@
       <a id="logo-container" href="../index.php" class="brand-logo">Rent Me</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails'])) {
@@ -33,7 +32,6 @@
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails'])) {
@@ -50,6 +48,8 @@
 
   <div class="container">
     <br><br>
+    <div style="text-align:center;"><img id="loading" src="../img/ajax-loader.gif" alt="" /></div>
+
     <div class="row center">
       <div id="users_data">
         <span>Username: </span>

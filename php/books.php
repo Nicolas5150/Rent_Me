@@ -19,7 +19,6 @@
       <a id="logo-container" href="../index.php" class="brand-logo">Rent Me</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails'])) {
@@ -33,7 +32,6 @@
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="books.php">Books</a></li>
-        <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
           if(isset($_SESSION['userDetails'])) {
@@ -49,14 +47,15 @@
   </nav>
 
   <div class="container">
+    <div style="text-align:center;"><img id="loading" src="../img/ajax-loader.gif" alt="" /></div>
     <!-- Filter the data for the ajax call after all generes have been loaded -->
     <div class="input-field col s12">
      <select id="filter_option">
-       <option value="" disabled selected>Filter by genere</option>
+       <option value="" disabled>Filter by genere</option>
        <option value="all">All</option>
-       <option value="comedy">Comedy</option>
+       <option value="adventure">Adventure</option>
+       <option value="drama">Drama</option>
        <option value="educational">Educational</option>
-       <option value="horror">Horror</option>
        <option value="romance">Romance</option>
      </select>
 
