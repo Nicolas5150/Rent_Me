@@ -1,4 +1,5 @@
 <?php
+session_start();
 // see if either value was passed in via ajax call.
 
 if (!empty($_POST["genere"])) {
@@ -31,7 +32,13 @@ $access->connect();
 
 // Decrement the counter for the current book at hand.
 if ($title != null && $count == -1) {
-  $booksData = $access->decrementBook($title);
+  if($_SESSION['userDetails'][1] == 0) {
+    $booksData = $access->decrementBook($title);
+  }
+
+  else {
+    $booksData = "Account has rental";
+  }
 
   $access->dissconnect();
   echo json_encode($booksData);

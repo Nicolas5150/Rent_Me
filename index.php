@@ -22,9 +22,10 @@
         <li><a href="php/contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
-          if(isset($_SESSION['userDetails']))
-            // This includes the logout and cart nav sections and its restylings.
-            echo "<li><a href=\"php/login.php\">logout</a></li>";
+          if(isset($_SESSION['userDetails'])) {
+            echo "<li><a href=\"php/profile.php\">Profile</a></li>";
+            echo "<li><a href=\"php/logout.php\">Logout</a></li>";
+          }
           else
             echo "<li><a href=\"php/login_signup.php\">Login / Signup</a></li>";
         ?>
@@ -35,9 +36,10 @@
         <li><a href="html/contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
-          if(isset($_SESSION['userDetails']))
-            // This includes the logout and cart nav sections and its restylings.
-            echo "<li><a href=\"../php/login.php\">logout</a></li>";
+          if(isset($_SESSION['userDetails'])) {
+            echo "<li><a href=\"php/profile.php\">Profile</a></li>";
+            echo "<li><a href=\"php/logout.php\">Logout</a></li>";
+          }
           else
             echo "<li><a href=\"php/login_signup.php\">Login / Signup</a></li>";
         ?>
@@ -67,10 +69,10 @@
       <div class="row">
         <div class="col s12 m6 l6">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">forward_5</i></h2>
-            <h5 class="center">Speeds up development</h5>
+            <h2 class="center brown-text"><i class="material-icons">alarm_on</i></h2>
+            <h5 class="center">No return dates</h5>
 
-            <p class="light">Rent up to 5 books at one time and return them to allow for more rentals.</p>
+            <p class="light">Rent one book at one time and return it whenever you are ready to get your next book.</p>
           </div>
         </div>
 
@@ -96,12 +98,12 @@
 
             <p class="light">Create an account, add your information, and start renting books right away!
               Ship the book back whenever you are ready to rent new books.
-              Just make sure to keep them in the same shape you found them</p>
+              Just make sure to keep them in the same shape you found them!</p>
           </div>
         </div>
     </div>
     <div class="row center">
-      <a href="html/login.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+      <a href="php/login_signup.php" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
     </div>
     <br><br>
   </div>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Access functions
 // Declare class to access this php file
 class access{
@@ -74,13 +73,13 @@ class access{
 
         // If the new table is created properly return true to the call.
         if ($this->connection->query($sql) === TRUE) {
-
+          $bookcount = 0;
           // INSERT INTO this new table data from the registered users table
           // This is SQL syntax and "users" in the table name
-          $sql ="INSERT INTO $tableName SET username =?, password=?";
+          $sql ="INSERT INTO $tableName SET username =?, password=?, bookcount=?";
           // Store query result in statement var
           $statement = $this->connection->prepare($sql);
-          $statement->bind_param("ss", $email, $password);
+          $statement->bind_param("ssi", $email, $password, $bookcount);
           $returnValue = $statement->execute();
 
 
@@ -101,9 +100,33 @@ class access{
     // Select user data via email in database
     public function getUser($email){
         $returnArray = null;
+        $tableName = "T_".$email;
         // Select INTO users SET   This is SQL syntax and "users" in the table name
         // http://php.net/manual/en/function.mysql-fetch-array.php
-        $sql = "SELECT * FROM Rent_Me WHERE username='".$email."'";
+        $sql = "SELECT * FROM $tableName WHERE username='".$email."'";
+        // Assign result from $sql into $result var
+        $result = $this->connection->query($sql);
+
+        // If at least one result is returned from the database
+        if($result != null && mysqli_num_rows($result) >= 1)
+        {
+            // Store all selected data in result to the $row var
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+
+            if(!empty($row))
+            {
+                $returnArray = $row;
+            }
+        }
+        return $returnArray;
+    }
+
+    // Select user data via email in database
+    public function getTable($email){
+        $returnArray = null;
+        // Select INTO users SET   This is SQL syntax and "users" in the table name
+        // http://php.net/manual/en/function.mysql-fetch-array.php
+        $sql = "SELECT * FROM $email";
         // Assign result from $sql into $result var
         $result = $this->connection->query($sql);
 
@@ -157,7 +180,7 @@ class access{
       return $booksData;
     }
 
-    // Select all from the users table that is the same genere as requested.
+    // Select from the table a certian book.
     public function selectBook($title){
       $sql = "SELECT * FROM Rent_Me_Books WHERE title='".$title."'";
       // Create the query to send to the database gathering all data from it.

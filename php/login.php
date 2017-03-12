@@ -29,6 +29,7 @@ if($email == $user["username"] && $password == $user["password"]) {
   // Start a new session bassed off the users new account.
   $_SESSION['userDetails'] = array();
   $_SESSION['userDetails'][] = $user["username"];
+  $_SESSION['userDetails'][] = $user["bookcount"];
 }
 
 else {

@@ -144,11 +144,12 @@
             },
             success: function (data) {
 
-              // alert("got here");
-              // var mydata = JSON.parse(data);
-              alert("inside the dec");
-              alert(data);
+              // If the user has a book checked out, alert them to return it.
 
+
+              // Else send the user to their profile page once the book is checked out
+              alert("Your book is on its way. Redirecting to your profile page.");
+              window.location = "http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/profile.php";
             }
           })
         });

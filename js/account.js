@@ -43,12 +43,12 @@
           success: function (data) {
             // Alert that email has been used before.
             if (data == "200") {
-              alert("passed check table");
+              window.location.replace("http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/profile.php");
             }
 
             // Error occured and or email is taken.
             else {
-              alert("did not pass check table");
+              alert("No ilegal characters allowed.");
             }
           }
         })
@@ -67,12 +67,12 @@
       success: function (data) {
         // Alert that email has been used before.
         if (data == "200") {
-          alert("passed login");
+          window.location.replace("http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/profile.php");
         }
 
         // Error occured and or email is taken.
         else {
-          alert("did not pass login");
+          alert("Error with username or password.");
         }
       }
     })

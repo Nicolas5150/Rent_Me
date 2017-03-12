@@ -22,11 +22,12 @@
         <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
-          if(isset($_SESSION['userDetails']))
-            // This includes the logout and cart nav sections and its restylings.
-            echo "<li><a href=\"php/login.php\">logout</a></li>";
+          if(isset($_SESSION['userDetails'])) {
+            echo "<li><a href=\"profile.php\">Profile</a></li>";
+            echo "<li><a href=\"logout.php\">Logout</a></li>";
+          }
           else
-            echo "<li><a href=\"login_signup.php\">Login / Signup</a></li>";
+            header("Location: http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/login_signup.php");
         ?>
       </ul>
 
@@ -35,11 +36,12 @@
         <li><a href="contact.php">Contact</a></li>
         <?php
           // Show logout if logged in currently
-          if(isset($_SESSION['userDetails']))
-            // This includes the logout and cart nav sections and its restylings.
-            echo "<li><a href=\"php/login.php\">logout</a></li>";
+          if(isset($_SESSION['userDetails'])) {
+            echo "<li><a href=\"profile.php\">Profile</a></li>";
+            echo "<li><a href=\"logout.php\">Logout</a></li>";
+          }
           else
-            echo "<li><a href=\"login_signup.php\">Login / Signup</a></li>";
+            header("Location: http://sulley.cah.ucf.edu/~ni927795/Rent_Me/php/login_signup.php");
         ?>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -68,16 +70,17 @@
 
       </div>
     </div>
+  </div>
 
-  <!-- The Modal Pop-Up - More about book -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div id="book_details">
+    <!-- The Modal Pop-Up - More about book -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="book_details">
 
+      </div>
     </div>
   </div>
-</div>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

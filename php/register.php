@@ -40,6 +40,7 @@ else
       // Start a new session bassed off the users new account.
       $_SESSION['userDetails'] = array();
       $_SESSION['userDetails'][] = $user["username"];
+      $_SESSION['userDetails'][] = $user["bookcount"];
 
       // Return 200 as a successful account creation.
       $returnArray["status"] = "200";
